@@ -1,0 +1,1 @@
+This is a chat application based on Golang and React
