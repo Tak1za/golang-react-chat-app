@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { connect, sendMsg } from './api';
 import Header from './components/Header/Header';
 import ChatHistory from './components/ChatHistory/ChatHistory';
 import ChatInput from './components/ChatInput/ChatInput';
+import Username from './components/Username/Username';
 
 class App extends Component {
 	constructor() {
 		super();
 
 		this.state = {
-			chatHistory: []
+			chatHistory: [],
+			username: ''
 		};
 	}
 	componentDidMount() {
@@ -36,8 +38,14 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				<ChatHistory chatHistory={this.state.chatHistory} />
-				<ChatInput send={this.send} />
+				{this.state.username === 'd' ? (
+					<Username />
+				) : (
+					<div className="chat">
+						<ChatHistory chatHistory={this.state.chatHistory} />
+						<ChatInput send={this.send} />
+					</div>
+				)}
 			</div>
 		);
 	}
