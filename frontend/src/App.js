@@ -29,8 +29,20 @@ class App extends Component {
 
 	send = (event) => {
 		if (event.keyCode === 13) {
-			sendMsg(event.target.value);
+			let msg = {
+				username: this.state.username,
+				body: event.target.value
+			};
+			sendMsg(JSON.stringify(msg));
 			event.target.value = '';
+		}
+	};
+
+	username = (event) => {
+		if (event.keyCode === 13) {
+			this.setState({
+				username: event.target.value
+			});
 		}
 	};
 
@@ -38,11 +50,11 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				{this.state.username === 'd' ? (
-					<Username />
+				{this.state.username === '' ? (
+					<Username username={this.username} />
 				) : (
 					<div className="chat">
-						<ChatHistory chatHistory={this.state.chatHistory} />
+						<ChatHistory chatHistory={this.state.chatHistory} username={this.state.username} />
 						<ChatInput send={this.send} />
 					</div>
 				)}

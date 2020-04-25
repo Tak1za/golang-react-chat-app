@@ -3,7 +3,13 @@ import './Username.scss';
 
 class Username extends Component {
 	render() {
-		return <h2>Hello</h2>;
+		return (
+			<div className="username-outer-container">
+				<div className="username-inner-container">
+					<input type="text" placeholder="Enter username" onKeyDown={this.props.username} />
+				</div>
+			</div>
+		);
 	}
 }
 

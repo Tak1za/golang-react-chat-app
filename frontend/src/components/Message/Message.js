@@ -11,7 +11,12 @@ class Message extends Component {
 
 	render() {
 		return (
-			<div className="message">
+			<div
+				className={`${this.state.message.username === this.props.username ? 'me' : null} message ${this.state
+					.message.usename === 'SYSTEM'
+					? 'system'
+					: null}`}
+			>
 				{this.state.message.username}: {this.state.message.body}
 			</div>
 		);
